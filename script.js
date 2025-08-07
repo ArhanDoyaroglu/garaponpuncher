@@ -50,13 +50,41 @@ function clickEffect() {
     }, 150);
 }
 
+// Yumruk efekti fonksiyonu
+function createPunchEffect(event) {
+    const punchEffect = document.createElement('div');
+    punchEffect.className = 'punch-effect';
+    
+    // Mouse pozisyonunu al
+    const rect = gameBox.getBoundingClientRect();
+    const x = event.clientX - rect.left - 30; // 30 = efekt genişliğinin yarısı
+    const y = event.clientY - rect.top - 30;  // 30 = efekt yüksekliğinin yarısı
+    
+    // Efekti konumlandır
+    punchEffect.style.left = x + 'px';
+    punchEffect.style.top = y + 'px';
+    
+    // Efekti kutuya ekle
+    gameBox.appendChild(punchEffect);
+    
+    // Animasyon bitince efekti kaldır
+    setTimeout(() => {
+        if (punchEffect.parentNode) {
+            punchEffect.parentNode.removeChild(punchEffect);
+        }
+    }, 600);
+}
+
 // Kutuya tıklama fonksiyonu
-function handleBoxClick() {
+function handleBoxClick(event) {
     // Tıklama sayısını artır
     currentClicks++;
     
     // Tıklama efekti
     clickEffect();
+    
+    // Yumruk efekti oluştur
+    createPunchEffect(event);
     
     // Tıklama sayısını güncelle
     updateClickCounter();
@@ -162,7 +190,12 @@ document.addEventListener('keydown', (e) => {
         case 'ArrowRight':
         case ' ':
             e.preventDefault();
-            handleBoxClick();
+            // Klavye için sahte event oluştur
+            const fakeEvent = {
+                clientX: gameBox.offsetLeft + gameBox.offsetWidth / 2,
+                clientY: gameBox.offsetTop + gameBox.offsetHeight / 2
+            };
+            handleBoxClick(fakeEvent);
             break;
         case 'Escape':
             if (notificationModal.style.display === 'block') {

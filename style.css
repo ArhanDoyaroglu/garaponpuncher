@@ -6,21 +6,21 @@
 
 .garapon-title {
     position: absolute;
-    top: 80px;
+    top: 5vh;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
-    max-width: 1600px;
+    max-width: 40vw;
     height: auto;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
 .garapon-banner {
     position: absolute;
-    top: 80px;
-    right: 220px;
+    top: 5vh;
+    right: 2vw;
     z-index: 100;
-    max-width: 400px;
+    max-width: 15vw;
     height: auto;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
@@ -40,8 +40,10 @@ body {
     border-radius: 20px;
     padding: 20px;
     text-align: center;
-    max-width: 600px;
+    max-width: 1200px;
     width: 90%;
+    position: relative;
+    margin: 0 auto;
 }
 
 .stage-indicator {
@@ -63,16 +65,18 @@ body {
 }
 
 .game-area {
-    margin: 200px 0 40px 0;
+    margin: 25vh 0 5vh 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 300px;
+    min-height: 40vh;
 }
 
 .game-box {
-    width: 450px;
-    height: 450px;
+    width: 35vw;
+    height: 35vw;
+    max-width: 450px;
+    max-height: 450px;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -347,12 +351,31 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .game-container {
-        padding: 20px;
+        padding: 15px;
+        width: 95%;
+    }
+    
+    .garapon-title {
+        max-width: 60vw;
+        top: 3vh;
+    }
+    
+    .garapon-banner {
+        max-width: 20vw;
+        top: 3vh;
+        right: 3vw;
+    }
+    
+    .game-area {
+        margin: 20vh 0 3vh 0;
+        min-height: 35vh;
     }
     
     .game-box {
-        width: 250px;
-        height: 250px;
+        width: 50vw;
+        height: 50vw;
+        max-width: 300px;
+        max-height: 300px;
     }
     
     .box-inner {
@@ -361,5 +384,30 @@ body {
     
     .btn {
         width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .garapon-title {
+        max-width: 70vw;
+        top: 2vh;
+    }
+    
+    .garapon-banner {
+        max-width: 25vw;
+        top: 2vh;
+        right: 2vw;
+    }
+    
+    .game-area {
+        margin: 18vh 0 2vh 0;
+        min-height: 30vh;
+    }
+    
+    .game-box {
+        width: 60vw;
+        height: 60vw;
+        max-width: 250px;
+        max-height: 250px;
     }
 } 

@@ -17,8 +17,6 @@ const gameBox = document.getElementById('game-box');
 const currentStageElement = document.getElementById('current-stage');
 const notificationModal = document.getElementById('notification-modal');
 const okBtn = document.getElementById('ok-btn');
-const ballMessage = document.getElementById('ball-message');
-const scoreEarned = document.getElementById('score-earned');
 
 // Evre değiştirme fonksiyonu
 function changeStage(newStage) {
@@ -30,8 +28,10 @@ function changeStage(newStage) {
     // Kutu sınıfını güncelle
     gameBox.className = `game-box stage-${currentStage}`;
     
-    // Evre göstergesini güncelle
-    currentStageElement.textContent = currentStage;
+    // Evre göstergesini güncelle (gizli element)
+    if (currentStageElement) {
+        currentStageElement.textContent = currentStage;
+    }
     
     // 4. evreye ulaşıldığında bildirim göster
     if (currentStage === totalStages) {
@@ -57,8 +57,8 @@ function createPunchEffect(event) {
     
     // Mouse pozisyonunu al
     const rect = gameBox.getBoundingClientRect();
-    const x = event.clientX - rect.left - 30; // 30 = efekt genişliğinin yarısı
-    const y = event.clientY - rect.top - 30;  // 30 = efekt yüksekliğinin yarısı
+    const x = event.clientX - rect.left - 120; // 120 = efekt genişliğinin yarısı (240/2)
+    const y = event.clientY - rect.top - 120;  // 120 = efekt yüksekliğinin yarısı (240/2)
     
     // Efekti konumlandır
     punchEffect.style.left = x + 'px';
@@ -108,33 +108,18 @@ function updateClickCounter() {
 function getRandomBall() {
     const random = Math.random() * 100; // 0-100 arası rastgele sayı
     
-    if (random <= 90) {
+    if (random <= 40) {
         return 'ball-white'; // %90 oran - Beyaz
-    } else if (random <= 97) {
+    } else if (random <= 70) {
         return 'ball-blue';  // %7 oran - Mavi
-    } else if (random <= 99.5) {
+    } else if (random <= 85) {
         return 'ball-red';   // %2.5 oran - Kırmızı
     } else {
         return 'ball-yellow'; // %0.5 oran - Sarı
     }
 }
 
-// Get ball messages
-function getBallMessage(ballClass) {
-    const messages = {
-        'ball-white': 'You won a white ball!',
-        'ball-blue': 'You won a blue ball!',
-        'ball-red': 'You won a red ball!',
-        'ball-yellow': 'You won a yellow ball!'
-    };
-    return messages[ballClass] || 'You won a ball!';
-}
 
-// Show one-time points
-function showEarnedPoints(points) {
-    // This function only shows one-time points
-    // Total score is not tracked
-}
 
 // Show notification function
 function showNotification() {
@@ -142,21 +127,18 @@ function showNotification() {
     document.body.style.overflow = 'hidden'; // Prevent scrolling
     
     // Select and show random ball
-    const randomBall = document.getElementById('random-ball');
+    const ballImage = document.getElementById('ball-image');
     const ballClass = getRandomBall();
-    const points = ballScores[ballClass];
     
-    // Clear previous classes
-    randomBall.className = 'random-ball';
-    // Add new class
-    randomBall.classList.add(ballClass);
+    // Set ball image based on type
+    const ballImages = {
+        'ball-white': 'ball_notif/whiteball.png',
+        'ball-blue': 'ball_notif/blueball.png',
+        'ball-red': 'ball_notif/redball.png',
+        'ball-yellow': 'ball_notif/goldenball.png'
+    };
     
-    // Update message
-    ballMessage.textContent = getBallMessage(ballClass);
-    
-    // Show one-time points
-    scoreEarned.textContent = `+${points.toLocaleString()} points!`;
-    scoreEarned.className = `score-earned score-${ballClass.replace('ball-', '')}`;
+    ballImage.src = ballImages[ballClass];
 }
 
 // Hide notification function
@@ -212,11 +194,4 @@ gameBox.addEventListener('click', handleBoxClick);
 // Initialize game when page loads
 document.addEventListener('DOMContentLoaded', () => {
     changeStage(1);
-    
-    // Welcome message
-    console.log('🎮 4 Stage Game started!');
-    console.log('📱 Controls:');
-    console.log('   - Click box: Advance stage');
-    console.log('   - ESC: Close notification');
-    console.log('   - 5 clicks required per stage (hidden)');
 }); 

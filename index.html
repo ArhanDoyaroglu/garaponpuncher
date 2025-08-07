@@ -8,7 +8,11 @@
 </head>
 <body>
     <div class="game-container">
-        <div class="stage-indicator">
+        <img src="garaponTıtle.png" alt="Garapon Title" class="garapon-title">
+        <img src="garaponBanner.png" alt="Garapon Banner" class="garapon-banner">
+        
+        <!-- Hidden stage indicator for JavaScript -->
+        <div class="stage-indicator" style="display: none;">
             <h2>Stage: <span id="current-stage">1</span>/4</h2>
         </div>
         
@@ -36,11 +40,10 @@
     <!-- Notification Modal -->
     <div id="notification-modal" class="modal">
         <div class="modal-content">
-            <h3>🎉 Congratulations!</h3>
-            <p id="ball-message">You reached stage 4!</p>
-            <div id="random-ball" class="random-ball"></div>
-            <div id="score-earned" class="score-earned"></div>
-            <button id="ok-btn" class="btn">OK</button>
+            <div id="ball-notification" class="ball-notification">
+                <img id="ball-image" src="" alt="Ball" class="ball-notification-img">
+            </div>
+            <button id="ok-btn" class="btn">Try Again</button>
         </div>
     </div>
 

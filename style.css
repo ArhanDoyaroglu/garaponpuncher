@@ -4,20 +4,41 @@
     box-sizing: border-box;
 }
 
+.garapon-title {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    max-width: 1600px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.garapon-banner {
+    position: absolute;
+    top: 80px;
+    right: 220px;
+    z-index: 100;
+    max-width: 400px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: white;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .game-container {
-    background: rgba(255, 255, 255, 0.95);
+    background: transparent;
     border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: center;
     max-width: 600px;
     width: 90%;
@@ -42,7 +63,7 @@ body {
 }
 
 .game-area {
-    margin: 40px 0;
+    margin: 200px 0 40px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,8 +71,8 @@ body {
 }
 
 .game-box {
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 450px;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -195,65 +216,62 @@ body {
 }
 
 /* Yumruk efekti animasyonları */
-@keyframes punchEffect {
+
+@keyframes punchImpact {
     0% {
-        transform: scale(0) rotate(0deg);
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
         opacity: 1;
     }
     50% {
-        transform: scale(1.2) rotate(180deg);
+        transform: translate(-50%, -50%) scale(1.5) rotate(180deg);
         opacity: 0.8;
     }
     100% {
-        transform: scale(1.5) rotate(360deg);
+        transform: translate(-50%, -50%) scale(2) rotate(360deg);
         opacity: 0;
     }
 }
 
-@keyframes punchShake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
 .punch-effect {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #ff6b6b 0%, #ee5a52 50%, #e74c3c 100%);
+    width: 240px;
+    height: 240px;
+    background: transparent;
     border-radius: 50%;
     pointer-events: none;
     z-index: 1000;
-    animation: punchEffect 0.6s ease-out forwards;
-    box-shadow: 0 0 20px rgba(255, 107, 107, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .punch-effect::before {
-    content: '🥊';
+    content: '💥';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
-    animation: punchShake 0.3s ease-in-out;
+    font-size: 96px;
+    animation: punchImpact 0.4s ease-out;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
 }
 
 .btn {
     padding: 12px 24px;
     border: none;
     border-radius: 25px;
-    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(45deg, #dc2626 0%, #ef4444 100%);
     color: white;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
 }
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
 }
 
 .btn:active {
@@ -275,11 +293,11 @@ body {
 
 .modal-content {
     background: white;
-    margin: 15% auto;
-    padding: 40px;
+    margin: 10% auto;
+    padding: 30px;
     border-radius: 20px;
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     animation: modalSlideIn 0.3s ease;
@@ -296,25 +314,16 @@ body {
     }
 }
 
-.modal-content h3 {
-    color: #333;
-    font-size: 28px;
-    margin-bottom: 15px;
-}
 
-.modal-content p {
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
 
-.random-ball {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin: 20px auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.ball-notification {
+    width: 300px;
+    height: 300px;
+    margin: 40px auto;
     animation: ballBounce 1s ease-in-out infinite alternate;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes ballBounce {
@@ -326,64 +335,14 @@ body {
     }
 }
 
-.ball-white {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-    border: 2px solid #ddd;
+.ball-notification-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.3));
 }
 
-.ball-blue {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    border: 2px solid #3a8bfe;
-}
 
-.ball-red {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-    border: 2px solid #e74c3c;
-}
-
-.ball-yellow {
-    background: linear-gradient(135deg, #ffd93d 0%, #ffb347 100%);
-    border: 2px solid #f39c12;
-}
-
-.score-earned {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 15px 0;
-    padding: 10px;
-    border-radius: 10px;
-    animation: scorePulse 0.5s ease-in-out;
-}
-
-@keyframes scorePulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.score-white {
-    background: linear-gradient(45deg, #f0f0f0 0%, #e0e0e0 100%);
-    color: #333;
-    border: 2px solid #ddd;
-}
-
-.score-blue {
-    background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
-    border: 2px solid #3a8bfe;
-}
-
-.score-red {
-    background: linear-gradient(45deg, #ff6b6b 0%, #ee5a52 100%);
-    color: white;
-    border: 2px solid #e74c3c;
-}
-
-.score-yellow {
-    background: linear-gradient(45deg, #ffd93d 0%, #ffb347 100%);
-    color: #333;
-    border: 2px solid #f39c12;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

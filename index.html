@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 Stage Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="stage-indicator">
+            <h2>Stage: <span id="current-stage">1</span>/4</h2>
+        </div>
+        
+        <div class="game-area">
+            <div id="game-box" class="game-box stage-1">
+                <div class="box-content">
+                    <div class="box-inner">
+                        <!-- Stage 1 - Garapon 1 -->
+                        <img src="garapons/garapon1.png" alt="Stage 1" class="stage-image stage-1-img">
+                        
+                        <!-- Stage 2 - Garapon 2 -->
+                        <img src="garapons/garapon2.png" alt="Stage 2" class="stage-image stage-2-img">
+                        
+                        <!-- Stage 3 - Garapon 3 -->
+                        <img src="garapons/garapon3.png" alt="Stage 3" class="stage-image stage-3-img">
+                        
+                        <!-- Stage 4 - Garapon 4 -->
+                        <img src="garapons/garapon4.png" alt="Stage 4" class="stage-image stage-4-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="modal">
+        <div class="modal-content">
+            <h3>🎉 Congratulations!</h3>
+            <p id="ball-message">You reached stage 4!</p>
+            <div id="random-ball" class="random-ball"></div>
+            <div id="score-earned" class="score-earned"></div>
+            <button id="ok-btn" class="btn">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
